@@ -1,0 +1,22 @@
+[project]
+name = "knowledge-vault"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "safna", email = "fathimathu29@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "mcp[cli]<2",
+    "numpy>=2.5.3",
+    "pytest>=9.1.1",
+    "sentence-transformers>=6.1.0",
+]
+
+[project.scripts]
+knowledge-vault = "knowledge_vault:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
