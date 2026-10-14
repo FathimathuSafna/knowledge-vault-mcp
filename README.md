@@ -44,17 +44,19 @@ flowchart TD
 
     subgraph Storage ["Local Storage"]
         DesktopFiles["Desktop Notes (*.md, *.txt)"]
-        DB[("SQLite (~/.knowledge_vault/vault.db)\n• Notes & 384d Vectors\n• Bi-directional Links")]
+        DB[("SQLite Database (vault.db)")]
     end
 
-    LLM <-->|Model Context Protocol (stdio)| Router
+    LLM <-->|"MCP (JSON-RPC over stdio)"| Router
     Router --> Model
     Router --> Sync
-    Sync <--> DesktopFiles
+    Sync --> DesktopFiles
+    DesktopFiles --> Sync
     Sync --> Model
     Model --> VectorEngine
     Router --> VectorEngine
-    VectorEngine <--> DB
+    VectorEngine --> DB
+    DB --> VectorEngine
 ```
 
 ---
